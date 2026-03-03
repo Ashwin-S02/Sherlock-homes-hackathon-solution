@@ -1,0 +1,662 @@
+{
+  "schema_version": "1.0",
+  "actions_catalog": {
+    "interview_witness": {
+      "input_args": [
+        "witness_name"
+      ]
+    },
+    "review_traffic_cctv": {
+      "input_args": [
+        "location",
+        "timeframe"
+      ]
+    },
+    "check_vehicle_registration": {
+      "input_args": [
+        "vehicle_number"
+      ]
+    },
+    "collect_evidence": {
+      "input_args": [
+        "location",
+        "evidence_type"
+      ]
+    },
+    "analyze_fingerprints": {
+      "input_args": [
+        "sample_id"
+      ]
+    },
+    "trace_mobile_number": {
+      "input_args": [
+        "mobile_number"
+      ]
+    },
+    "review_access_logs": {
+      "input_args": [
+        "facility_or_room",
+        "timeframe"
+      ]
+    },
+    "review_wifi_logs": {
+      "input_args": [
+        "area",
+        "timeframe"
+      ]
+    },
+    "cross_reference_pawnshop_records": {
+      "input_args": [
+        "item_description"
+      ]
+    },
+    "review_purchase_records": {
+      "input_args": [
+        "item_or_sku",
+        "timeframe"
+      ]
+    },
+    "check_upi_transactions": {
+      "input_args": [
+        "party_name",
+        "timeframe"
+      ]
+    },
+    "review_ridehailing_logs": {
+      "input_args": [
+        "vehicle_or_plate",
+        "timeframe"
+      ]
+    },
+    "verify_alibi": {
+      "input_args": [
+        "suspect_name",
+        "timeframe"
+      ]
+    },
+    "check_vehicle_anpr": {
+      "input_args": [
+        "checkpoint",
+        "timeframe"
+      ]
+    },
+    "osint_search": {
+      "input_args": [
+        "platform",
+        "query"
+      ]
+    },
+    "interrogate_suspect": {
+      "input_args": [
+        "suspect_name"
+      ]
+    },
+    "interrogate_suspect_3rd_degree": {
+      "input_args": [
+        "suspect_name"
+      ]
+    }
+  },
+  "cases": {
+    "easy": [
+      {
+        "case_id": "canteen_cashbox_theft",
+        "description": "During a college fest, the canteen cashbox goes missing after closing time.",
+        "initial_clue": "Guard Nisha saw someone in a red hoodie running toward Parking B around 20:15.",
+        "suspects": [
+          "Neeraj the Volunteer",
+          "Pooja the Treasurer",
+          "Imran the Vendor"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Nisha\"]": "Red-hoodie sprinted to Parking B at 20:15 and left on a bike."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Parking B\",\"20:10-20:20\"]": "Bike GJ05 XY 7788 exited carrying a small lockbox at 20:16."
+            }
+          },
+          "check_vehicle_registration": {
+            "input_args": [
+              "vehicle_number"
+            ],
+            "responses": {
+              "[\"GJ05 XY 7788\"]": "Registered to Imran the Vendor."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Imran the Vendor\"]": "Says Neeraj borrowed his bike to 'drop props' at 20:05.",
+              "[\"Neeraj the Volunteer\"]": "Look, I have better things to do. Are we done with this little drama?"
+            }
+          },
+          "interrogate_suspect_3rd_degree": {
+            "responses": {
+              "[\"Neeraj the Volunteer\"]": "After intense questioning and faced with irrefutable evidence, Neeraj the Volunteer finally confesses to the crime."
+            }
+          }
+        },
+        "solution": "Neeraj the Volunteer",
+        "summary": "Witness → CCTV plate → bike owner → link to Neeraj → confession."
+      },
+      {
+        "case_id": "lab_microscope_theft",
+        "description": "A high-end microscope disappears from Lab 203 after hours.",
+        "initial_clue": "Security email shows an after-hours door swipe at 22:12.",
+        "suspects": [
+          "Karthik the Research Assistant",
+          "Lila the PhD Scholar",
+          "Om the Lab Attendant"
+        ],
+        "actions": {
+          "review_access_logs": {
+            "input_args": [
+              "facility_or_room",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Lab 203\",\"22:00-22:30\"]": "Swipe: ID#17 (Karthik) at 22:12; no other swipes."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Lab 203 Corridor\",\"22:10-22:20\"]": "Karthik leaving with a duffel bag at 22:16."
+            }
+          },
+          "interrogate_suspect": {
+            "responses": {
+              "[\"Karthik the Research Assistant\"]": "Admits taking it to pawn after his grant got delayed."
+            }
+          }
+        },
+        "solution": "Karthik the Research Assistant",
+        "summary": "Access logs + corridor CCTV → direct confession."
+      },
+      {
+        "case_id": "missing_ganesh_idol",
+        "description": "The sacred Ganesh idol is stolen from a Mumbai temple shrine overnight.",
+        "initial_clue": "Witness Chaiwala Ram saw a white Maruti Swift speeding away at midnight.",
+        "suspects": [
+          "Raju the Sculptor",
+          "Anil the Security Guard",
+          "Vikram the Local Shopkeeper"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Ram\"]": "Saw white Maruti Swift speeding near MG Road around midnight."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"MG Road\",\"00:00-00:10\"]": "Captured Swift MH12 AB 1234 near Vikram’s shop at 00:05."
+            }
+          },
+          "check_vehicle_registration": {
+            "input_args": [
+              "vehicle_number"
+            ],
+            "responses": {
+              "[\"MH12 AB 1234\"]": "Registered to Vikram the Local Shopkeeper."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Vikram the Local Shopkeeper\"]": "Says Anil borrowed his car that night.",
+              "[\"Anil the Security Guard\"]": "Confesses to stealing the idol to sell it secretly."
+            }
+          }
+        },
+        "solution": "Anil the Security Guard",
+        "summary": "Witness → CCTV → plate owner → link to Anil → confession."
+      },
+      {
+        "case_id": "theft_at_saree_shop",
+        "description": "A saree boutique is broken into at night; priceless silk sarees go missing.",
+        "initial_clue": "Fruit seller Lakshmi heard glass shatter and saw a uniformed figure dash away.",
+        "suspects": [
+          "Sunil the Tailor",
+          "Karan the Delivery Boy",
+          "Mukesh the Night Watchman"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Lakshmi\"]": "Saw a delivery-boy uniform running toward Shastri Nagar at 23:20."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Shastri Nagar\",\"23:15-23:30\"]": "Karan carrying a large saree bundle at 23:20."
+            }
+          },
+          "trace_mobile_number": {
+            "input_args": [
+              "mobile_number"
+            ],
+            "responses": {
+              "[\"9876543210\"]": "Karan’s phone pinged near Shastri Nagar around 23:20."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Karan the Delivery Boy\"]": "Look, I have better things to do. Are we done with this little drama?"
+            }
+          },
+          "interrogate_suspect_3rd_degree": {
+            "responses": {
+              "[\"Karan the Delivery Boy\"]": "After intense questioning and faced with irrefutable evidence, Karan the Delivery Boy finally confesses to the crime."
+            }
+          }
+        },
+        "solution": "Karan the Delivery Boy",
+        "summary": "Witness → CCTV → tower ping → confession."
+      },
+      {
+        "case_id": "missing_jewelry_box",
+        "description": "A woman's necklace gifted by her mom disappears from her jewelry box.",
+        "initial_clue": "Housemaid Seema saw footprints in the garden.",
+        "suspects": [
+          "Ajay the Electrician",
+          "Ramesh the Neighbor",
+          "Vivek the Gardener"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Seema\"]": "Saw footprints in the garden. Also she hasn't seen Vivek all day. But she saw Ramesh around the back gate."
+            }
+          },
+          "collect_evidence": {
+            "input_args": [
+              "location",
+              "evidence_type"
+            ],
+            "responses": {
+              "[\"Garden\",\"footprints\"]": "Footprints matched size and pattern of Ramesh's sandals."
+            }
+          },
+          "analyze_fingerprints": {
+            "input_args": [
+              "sample_id"
+            ],
+            "responses": {
+              "[\"jewelry_box_sample\"]": "Fingerprints matched Vivek the Gardener."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Vivek the Gardener\"]": "I have not stolen anything I am rich enough to buy something for myself. And do you have proof of this accusation? Before you accuse me, get the proof.",
+              "[\"Ramesh the Neighbor\"]": "Tells he came to meet Mr Joshi and he hasn't done anything."
+            }
+          },
+          "interrogate_suspect_3rd_degree": {
+            "responses": {
+              "[\"Vivek the Gardener\"]": "Vivek the Gardener finally confesses to the crime said he left the fingerprints by mistake."
+            }
+          }
+        },
+        "solution": "Vivek the Gardener",
+        "summary": "Footprints → prints → confession."
+      },
+      {
+        "case_id": "missing_cricket_bat",
+        "description": "A signed cricket bat disappears from the Wankhede locker room after a night match.",
+        "initial_clue": "Security guard Ajit saw a man in a VIP jersey slip into the locker area.",
+        "suspects": [
+          "Rahul the Ground Staff",
+          "Anand the Coach",
+          "Vijay the Batter"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Ajit\"]": "Saw someone carrying a bat case toward Gate 4 at ~01:00."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Gate 4\",\"00:55-01:05\"]": "Vijay exits with a bat case at 01:02."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Vijay the Batter\"]": "Denies, then admits taking the bat to gift his coach."
+            }
+          }
+        },
+        "solution": "Vijay the Batter",
+        "summary": "Witness + exit CCTV → confession."
+      },
+      {
+        "case_id": "library_book_theft",
+        "description": "A rare manuscript is stolen from the Delhi Public Library’s restricted section.",
+        "initial_clue": "Librarian Meera noticed the manuscript missing during morning inventory.",
+        "suspects": [
+          "Sunita the Researcher",
+          "Deepak the Librarian Assistant",
+          "Priya the Student"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Meera\"]": "Saw someone at the library exit with a large bag around 6 in the evening."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Delhi Public Library Exit\",\"18:00-18:15\"]": "Deepak carrying a sack out at 18:07."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Deepak the Librarian Assistant\"]": "Come on, I was just passing by. Maybe check your facts before pointing fingers."
+            }
+          },
+          "interrogate_suspect_3rd_degree": {
+            "responses": {
+              "[\"Deepak the Librarian Assistant\"]": "After intense questioning and faced with irrefutable evidence, Deepak the Librarian Assistant finally confesses to the crime."
+            }
+          }
+        },
+        "solution": "Deepak the Librarian Assistant",
+        "summary": "Witness + exit cam → confession."
+      },
+      {
+        "case_id": "exam_paper_leak",
+        "description": "Confidential board exam papers are leaked from the education office.",
+        "initial_clue": "Clerk Rajesh found torn paper bits near the copier.",
+        "suspects": [
+          "Priya the Clerk",
+          "Anil the Typist",
+          "Sneha the Messenger"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Clerk Rajesh\"]": "Saw someone near the copy room around 02:00 AM."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Copy Room\",\"02:00-02:15\"]": "Anil and Sneha came out of the copy room.",
+              "[\"Copy Room\",\"01:40-01:59\"]": "Found Rajesh leaving the copy room with papers."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Sneha the Messenger\"]": "Admits seeing someone else coming out just before they entered.",
+              "[\"Anil the Typist\"]": "Admits seeing someone else coming out just before they entered.",
+              "[\"Clerk Rajesh\"]": "Admits that he did for money as the students were going to pay him."
+            }
+          }
+        },
+        "solution": "Clerk Rajesh",
+        "summary": "Watermark bits → tower ping → confession."
+      },
+      {
+        "case_id": "temple_donation_box_theft",
+        "description": "Coins vanish from a locked donation box at a Chennai temple during the festival.",
+        "initial_clue": "Priest Ranganathan found the box unlocked with mud smudges around.",
+        "suspects": [
+          "Gopal the Priest Assistant",
+          "Lakshmi the Cleaner",
+          "Mani the Pilgrim"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Priest Ranganathan\"]": "Saw Mani loitering near the box after midnight."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Temple Hall\",\"00:00-00:10\"]": "Mani with muddy hands near the box."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Mani the Pilgrim\"]": "Admits taking coins to help his family."
+            }
+          }
+        },
+        "solution": "Mani the Pilgrim",
+        "summary": "Witness + CCTV → admission."
+      },
+      {
+        "case_id": "red_fort_painting_heist",
+        "description": "An antique Mughal-era painting is stolen from a special exhibit at the Red Fort.",
+        "initial_clue": "Security guard Arjun heard a glass case click open at 3 AM.",
+        "suspects": [
+          "Nikhil the Historian",
+          "Rekha the Curator",
+          "Suresh the Night Guard"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Arjun\"]": "Saw a lady tap the case and walk away from the exhibit wing."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Red Fort Exhibit Wing\",\"03:00-03:10\"]": "Rekha leaving with a painting roll."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Rekha the Curator\"]": "Confesses to a private sale plan."
+            }
+          }
+        },
+        "solution": "Rekha the Curator",
+        "summary": "Witness + corridor cam → confession."
+      },
+      {
+        "case_id": "disappearance_of_tiffin",
+        "description": "A delivery person’s signature tiffin is reported missing in a busy neighborhood.",
+        "initial_clue": "Shopkeeper Mehul saw a stray dog dragging a tiffin outside the shop.",
+        "suspects": [
+          "Raju the Delivery Boy",
+          "Chotu the Dog Walker",
+          "Bhavesh the Street Vendor"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Mehul\"]": "Saw a kid walking his dogs near the tiffin stand at noon."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Tiffin Stand\",\"12:00-12:10\"]": "Chotu picks up a tiffin and walks away."
+            }
+          },
+          "interrogate_suspect": {
+            "input_args": [
+              "suspect_name"
+            ],
+            "responses": {
+              "[\"Chotu the Dog Walker\"]": "Admits feeding the tiffin to his dogs after finding it unattended."
+            }
+          }
+        },
+        "solution": "Chotu the Dog Walker",
+        "summary": "Witness + CCTV → admission."
+      },
+      {
+        "case_id": "canteen_snack_theft",
+        "description": "Packets of chips vanish from the college canteen counter during the lunch rush.",
+        "initial_clue": "Cashier Smita notes someone with an oversized backpack loitering by the display.",
+        "suspects": [
+          "Raghu the Fresher",
+          "Smita the Cashier",
+          "Arjun the NCC Cadet"
+        ],
+        "actions": {
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Canteen Counter\",\"12:30-12:50\"]": "Raghu repeatedly opens his backpack near the chips rack."
+            }
+          },
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Cashier Smita\"]": "Saw a mid aged guy with a black hoodie around noon near the canteen counter, blocking the view of the rack twice."
+            }
+          },
+          "interrogate_suspect": {
+            "responses": {
+              "[\"Raghu the Fresher\"]": "Admits he stuffed packets into his bag 'as a dare'."
+            }
+          }
+        },
+        "solution": "Raghu the Fresher",
+        "summary": "Counter CCTV + cashier’s account → confession."
+      },
+      {
+        "case_id": "canteen_wallet_case",
+        "description": "A wallet is reported missing from a canteen bench.",
+        "initial_clue": "Friend noticed someone leaving the bench in a hurry after lunch.",
+        "suspects": [
+          "Pankaj the Basketballer",
+          "Tara the Senior",
+          "Salim the Vendor"
+        ],
+        "actions": {
+          "interview_witness": {
+            "input_args": [
+              "witness_name"
+            ],
+            "responses": {
+              "[\"Friend\"]": "Saw someone quickly grab a cloth from the bench zone just after lunch and leave."
+            }
+          },
+          "review_traffic_cctv": {
+            "input_args": [
+              "location",
+              "timeframe"
+            ],
+            "responses": {
+              "[\"Bench Zone\",\"13:00-13:15\"]": "Salim pockets a small item while wiping the table.",
+              "[\"Canteen\",\"13:00-13:15\"]": "Salim pockets a small item while wiping the table."
+            }
+          },
+          "interrogate_suspect": {
+            "responses": {
+              "[\"Salim the Vendor\"]": "Admits he picked up the wallet and intended to keep it."
+            }
+          }
+        },
+        "solution": "Salim the Vendor",
+        "summary": "Witness + CCTV → admission."
+      }
+    ]
+  }
+}
