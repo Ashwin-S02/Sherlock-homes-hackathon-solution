@@ -1,4 +1,13 @@
-# AI Agents Hackathon
+# AI Agents Hackathon - Sherlock Holmes Solution
+
+This repository contains an AI-powered detective solution built for the AI Agents Hackathon. The project utilizes the **Gemini 1.5 Flash** model to act as an autonomous detective agent, capable of solving various simulated crime cases efficiently. 
+
+### Key Features
+- **Optimized Reasoning:** The agent employs specific investigation patterns (Person Sighting, Vehicle Clue, Location/Time Clue, Digital Evidence) to solve crimes in a minimal number of steps (2-4 steps maximum).
+- **Tool Integration:** Uses a custom `agent_tools` library to interact with the environment, including interviewing witnesses, reviewing CCTV footage, checking vehicle registrations, analyzing fingerprints, and more.
+- **Automated Execution:** The `solution.py` and `solution.ipynb` scripts automatically read cases from `reported_cases.json`, investigate each case using the LLM, and output the final findings and culprits to `preds.json`.
+
+---
 
 Short guide to run the cases, use the tools, and grade predictions.
 
